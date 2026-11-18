@@ -1,0 +1,19 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
+
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
+}
+
+rootProject.name = 'mint-machine-mods'
+
+// Compile-only copies of the other mods' classes these mods call (never packaged)
+include 'stubs'
+
+// include 'economy'  // added once its port is in
+include 'combat'
+include 'accelerators'
+include 'jetpack'

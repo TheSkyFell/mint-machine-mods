@@ -1,0 +1,57 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL="https://github.com/TheSkyFell/mint-machine-mods/issues"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+displayURL="https://github.com/TheSkyFell/mint-machine-mods"
+authors="${mod_authors}"
+credits="Made for the Create: Mint & Machine modpack"
+description='''
+Botany Pots join the other growing machinery: Mystical Agriculture Growth Accelerators below a pot and Botania Agricarnations covering it speed it up (up to 3x, configurable), and Ars Nouveau Agronomic Sourcelinks get Source as a pot's crop grows. Pots that are empty, waxed, full or not growing get no boost. Settings are in config/botanypots_accelerators-common.toml.
+'''
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="${neo_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="botanypots"
+    type="required"
+    versionRange="[21.1,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="mysticalagriculture"
+    type="optional"
+    versionRange="[0,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="botania"
+    type="optional"
+    versionRange="[0,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="ars_nouveau"
+    type="optional"
+    versionRange="[0,)"
+    ordering="NONE"
+    side="BOTH"

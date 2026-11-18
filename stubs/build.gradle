@@ -1,0 +1,17 @@
+// Compile-only stand-ins for the classes of other mods that these mods call. Only the signatures matter:
+// every body throws. They are never packaged (the mods use `compileOnly`), and CI fails if one ends up in a jar.
+// Each one copies the real class's signatures from the exact version in the modpack.
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = project.neo_version
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}

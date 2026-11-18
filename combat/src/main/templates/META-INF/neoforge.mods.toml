@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL="https://github.com/TheSkyFell/mint-machine-mods/issues"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+displayURL="https://github.com/TheSkyFell/mint-machine-mods"
+authors="${mod_authors}"
+credits="Made for the Create: Mint & Machine modpack"
+description='''
+Rebalances weapons and armor that outclass their place in the progression, with Netherite as the benchmark: Mystical Agriculture tools and armor, Forbidden & Arcanus, Ars Elemental, Ars Technica, Create: Ironworks, Protection Pixel, Create Stuff 'N Additions and Create Stuff & Netherite Additions gear. Only each item's own base damage, armor, toughness and knockback resistance are replaced, so bonuses from other mods still apply. Every number is in config/mintmachine_combat.json.
+'''
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="${neo_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"

@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    { "id": "create_sa:small_filling_tank", "required": false },
+    { "id": "create_sa:medium_filling_tank", "required": false },
+    { "id": "create_sa:large_filling_tank", "required": false },
+    { "id": "create_sa:small_fueling_tank", "required": false },
+    { "id": "create_sa:medium_fueling_tank", "required": false },
+    { "id": "create_sa:large_fueling_tank", "required": false },
+    { "id": "create_sa:creative_filling_tank", "required": false }
+  ]
+}

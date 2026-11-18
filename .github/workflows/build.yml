@@ -1,0 +1,81 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build with Gradle
+        id: build
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          chmod +x gradlew
+          ./gradlew build --stacktrace 2>&1 | tee build.log
+
+      # The jars must hold only these mods' own classes: the stand-ins in stubs/ are compile-only
+      - name: Check jars contain no stub classes
+        id: check
+        if: steps.build.outcome == 'success'
+        continue-on-error: true
+        run: |
+          set -e
+          bad=0
+          for jar in */build/libs/*.jar; do
+            others=$(unzip -Z1 "$jar" | grep '\.class$' | grep -v '^com/mintmachine/' || true)
+            if [ -n "$others" ]; then
+              echo "::error::$jar contains classes outside com/mintmachine:"; echo "$others"; bad=1
+            fi
+          done
+          exit $bad
+
+      - name: Upload jars
+        if: steps.build.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: mint-machine-mods
+          path: |
+            economy/build/libs/*.jar
+            combat/build/libs/*.jar
+            accelerators/build/libs/*.jar
+            jetpack/build/libs/*.jar
+
+      # Latest build log and jars on the ci-output branch, so they can be read without signing in
+      - name: Publish build output
+        if: always() && github.event_name != 'pull_request'
+        run: |
+          mkdir -p out
+          cp build.log out/ 2>/dev/null || true
+          for d in economy combat accelerators jetpack; do cp $d/build/libs/*.jar out/ 2>/dev/null || true; done
+          echo "build=${{ steps.build.outcome }} check=${{ steps.check.outcome }}" > out/RESULT
+          echo "${GITHUB_SHA}" > out/SHA
+          cd out
+          git init -q
+          git checkout -q -b ci-output
+          git add -A
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -q -m "Build output for ${GITHUB_SHA}"
+          git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" ci-output
+
+      - name: Fail if the build or check failed
+        if: steps.build.outcome != 'success' || steps.check.outcome == 'failure'
+        run: exit 1
