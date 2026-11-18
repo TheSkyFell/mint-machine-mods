@@ -1,0 +1,65 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL="https://github.com/TheSkyFell/mint-machine-mods/issues"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+displayURL="https://github.com/TheSkyFell/mint-machine-mods"
+authors="${mod_authors}"
+credits="Made for the Create: Mint & Machine modpack"
+description='''
+The Create: Mint & Machine economy, built on Create: Numismatics coins.
+- Villagers and wandering traders trade in coins, priced across the whole coin ladder (vanilla and modded villagers, and Easy Villagers trader blocks).
+- Every item gets a Shipping Bin sell price, worked out from base materials and recipes, and capped below what villagers charge.
+- Change for coins at villagers, Numismatics Vendors, Brass Depositors and Create shopkeepers, and bank cards at villagers.
+- Golden and big Starcatcher fish sell for more.
+Settings are in config/mintmachine_economy/settings.json.
+'''
+
+[[accessTransformers]]
+file="META-INF/accesstransformer.cfg"
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="${neo_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="numismatics"
+    type="required"
+    versionRange="[1.1,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="shippingbin"
+    type="required"
+    versionRange="[0,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="create"
+    type="optional"
+    versionRange="[6.0,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="starcatcher"
+    type="optional"
+    versionRange="[0,)"
+    ordering="NONE"
+    side="BOTH"

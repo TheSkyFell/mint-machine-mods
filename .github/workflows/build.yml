@@ -41,7 +41,7 @@ jobs:
         run: |
           set -e
           bad=0
-          for jar in */build/libs/*.jar; do
+          for jar in economy/build/libs/*.jar combat/build/libs/*.jar accelerators/build/libs/*.jar jetpack/build/libs/*.jar; do
             others=$(unzip -Z1 "$jar" | grep '\.class$' | grep -v '^com/mintmachine/' || true)
             if [ -n "$others" ]; then
               echo "::error::$jar contains classes outside com/mintmachine:"; echo "$others"; bad=1
