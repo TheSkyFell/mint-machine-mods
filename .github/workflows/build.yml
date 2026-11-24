@@ -41,7 +41,7 @@ jobs:
         run: |
           set -e
           bad=0
-          for jar in economy/build/libs/*.jar combat/build/libs/*.jar accelerators/build/libs/*.jar jetpack/build/libs/*.jar; do
+          for jar in economy/build/libs/*.jar combat/build/libs/*.jar accelerators/build/libs/*.jar jetpack/build/libs/*.jar opacbridge/build/libs/*.jar missionpaths/build/libs/*.jar; do
             others=$(unzip -Z1 "$jar" | grep '\.class$' | grep -v '^com/mintmachine/' || true)
             if [ -n "$others" ]; then
               echo "::error::$jar contains classes outside com/mintmachine:"; echo "$others"; bad=1
@@ -59,6 +59,8 @@ jobs:
             combat/build/libs/*.jar
             accelerators/build/libs/*.jar
             jetpack/build/libs/*.jar
+            opacbridge/build/libs/*.jar
+            missionpaths/build/libs/*.jar
 
       # Latest build log and jars on the ci-output branch, so they can be read without signing in
       - name: Publish build output
@@ -66,7 +68,7 @@ jobs:
         run: |
           mkdir -p out
           cp build.log out/ 2>/dev/null || true
-          for d in economy combat accelerators jetpack; do cp $d/build/libs/*.jar out/ 2>/dev/null || true; done
+          for d in economy combat accelerators jetpack opacbridge missionpaths; do cp $d/build/libs/*.jar out/ 2>/dev/null || true; done
           echo "build=${{ steps.build.outcome }} check=${{ steps.check.outcome }}" > out/RESULT
           echo "${GITHUB_SHA}" > out/SHA
           cd out

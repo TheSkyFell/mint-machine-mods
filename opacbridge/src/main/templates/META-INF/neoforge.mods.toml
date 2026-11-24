@@ -1,0 +1,48 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL="https://github.com/TheSkyFell/mint-machine-mods/issues"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+displayURL="https://github.com/TheSkyFell/mint-machine-mods"
+authors="${mod_authors}"
+credits="Made for the Create: Mint & Machine modpack"
+description='''
+Lets Create Aeronautics: Automated Logistics use Open Parties and Claims parties for its team and ally checks (station, transponder and logistics terminal permissions, per-team vehicle limits) when FTB Teams isn't installed. With FTB Teams installed it does nothing.
+'''
+
+[[mixins]]
+config="aal_opac_bridge.mixins.json"
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="${neo_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+# Written against Automated Logistics 0.7.0's FtbTeamsCompat. A later minor version may change it, so the range stops
+# at 0.8: the game then says plainly that this mod needs updating instead of failing in a mixin.
+[[dependencies.${mod_id}]]
+    modId="create_aeronautics_automated_logistics"
+    type="required"
+    versionRange="[0.7.0,0.8)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="openpartiesandclaims"
+    type="required"
+    versionRange="[0.30.0,)"
+    ordering="AFTER"
+    side="BOTH"

@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.mintmachine.aalopac.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "FtbTeamsCompatMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

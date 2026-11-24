@@ -1,0 +1,41 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL="https://github.com/TheSkyFell/mint-machine-mods/issues"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+displayURL="https://github.com/TheSkyFell/mint-machine-mods"
+authors="${mod_authors}"
+credits="Made for the Create: Mint & Machine modpack"
+description='''
+Splits the Missions mod's 10 weekly missions evenly between paths (by default 2 each of Create, Travel, Magic, Farming and Fishing), and keeps rerolls in a mission's own path. Paths are set on the sub-missions in config/missions/missions.json; how many slots each path gets is set in config/missions/paths.json.
+'''
+
+[[mixins]]
+config="missions_paths.mixins.json"
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="${neo_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+# Written against Missions 0.5.2's DataStorage. A later minor version may change it, so the range stops at 0.6: the
+# game then says plainly that this mod needs updating instead of failing in a mixin.
+[[dependencies.${mod_id}]]
+    modId="missions"
+    type="required"
+    versionRange="[0.5.2,0.6)"
+    ordering="AFTER"
+    side="BOTH"
