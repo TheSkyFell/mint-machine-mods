@@ -42,6 +42,6 @@ Companion mods for the **Create: Mint & Machine** modpack (NeoForge 1.21.1). The
 
 The jars land in each mod's `build/libs/`. GitHub Actions builds every push. The latest jars and build log are pushed to the `ci-output` branch, and are also attached to each run as an artifact.
 
-`opacbridge` and `missionpaths` are MIT-licensed; the other four are All Rights Reserved. Their plain-Java rules have unit tests (`./gradlew test`, also run by `build`). Checks that need the real mods (applying the mixins with the real Mixin transformer, and running against the pack's `missions.json`) were run against the modpack's jars outside this build.
+All six mods are MIT-licensed (`LICENSE`). Their plain-Java rules have unit tests (`./gradlew test`, also run by `build`). Checks that need the real mods (applying the mixins with the real Mixin transformer, and running against the pack's `missions.json`) were run against the modpack's jars outside this build.
 
 The other mods' classes come from `stubs/`. These are compile-only stand-ins whose signatures are copied from the exact versions in the modpack, and they are never packaged. CI fails if a stub class ends up in a jar. If a mod these depend on changes its API, update the matching stub.
