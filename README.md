@@ -13,7 +13,8 @@ Companion mods for the **Create: Mint & Machine** modpack (NeoForge 1.21.1). The
 
 - **Economy:**
   - Villagers and wandering traders trade in Create: Numismatics coins.
-  - Every item gets a Shipping Bin sell price, saved to `config/mintmachine_economy/shipping_prices.json`.
+  - Every item gets a Shipping Bin sell price, saved to `config/mintmachine_economy/shipping_prices.json`. The same mods and settings give the same prices in single player and on a server.
+  - A server sends its prices to each player who joins, so the bin's tooltips and accepted items match what the server pays.
   - Change is made for coins at villagers and shops, and a Bank Card in the offhand pays at villagers.
   - Golden and big Starcatcher fish sell for more.
   - Needs Numismatics and Shipping Bin. Create and Starcatcher are optional.

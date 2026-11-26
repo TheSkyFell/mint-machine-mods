@@ -57,7 +57,7 @@ final class ShippingBinBridge {
      * Rebuilt here to match the new trades, so new items can go in without a reload. False if that isn't possible.
      */
     @SuppressWarnings("unchecked")
-    private static boolean updateInputs(TradeManager manager, Collection<Trade> trades) {
+    static boolean updateInputs(TradeManager manager, Collection<Trade> trades) {
         try {
             if (allowedInputs == null) {
                 Field f = TradeManager.class.getDeclaredField("allowedInputs");

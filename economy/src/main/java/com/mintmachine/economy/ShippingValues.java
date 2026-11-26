@@ -68,12 +68,16 @@ import tfar.shippingbin.ShippingBin;
  * <li>Nothing pays more than half of what a villager charges for it.</li>
  * </ol>
  * Worked out when a world has loaded, saved to config/mintmachine_economy/shipping_prices.json, and served to the
- * Shipping Bin by {@link ShippingPack}. Values are in spurs.
+ * Shipping Bin by {@link ShippingPack}. Values are in spurs. {@link PriceSync} sends them to players.
+ * <p>
+ * The same mods and settings always give the same prices, in single player and on a dedicated server: recipes, items
+ * and tags are read in id order, the sample villagers' trades are rolled from fixed seeds, and Brewin' and Chewin'
+ * keg results are looked up the same way on both ({@link KegResults}).
  */
 final class ShippingValues {
     static final String LOG = "[shipping_values] ";
     /** Bump when the calculation changes, so saved prices are worked out again. */
-    private static final String VERSION = "java-1";
+    private static final String VERSION = "java-2";
     private static final List<String> RARITIES = List.of("COMMON", "UNCOMMON", "RARE", "EPIC");
 
     static void onServerStarted(ServerStartedEvent event) {
@@ -271,7 +275,9 @@ final class ShippingValues {
             for (ResourceLocation key : BuiltInRegistries.ITEM.keySet()) sum += key.hashCode();
             return BuiltInRegistries.ITEM.keySet().size() + "/" + sum;
         }), String.valueOf(BuiltInRegistries.ITEM.size()));
-        Collection<RecipeHolder<?>> holders = server.getRecipeManager().getRecipes();
+        // In id order, so the cheapest-recipe search and its tie-breaks don't depend on the order recipes loaded in
+        List<RecipeHolder<?>> holders = new ArrayList<>(server.getRecipeManager().getRecipes());
+        holders.sort(Comparator.comparing(h -> h.id().toString()));
         String recipeSig = Objects.requireNonNullElse(attempt("recipe list", () -> {
             int sum = 0;
             for (RecipeHolder<?> h : holders) sum += h.id().hashCode();
@@ -300,6 +306,7 @@ final class ShippingValues {
         }
         if (same) {
             JsonObject savedTrades = cached.getAsJsonObject("trades");
+            PriceSync.setPrices(server, savedTrades);
             Integer liveNow = attempt("live trade count", () -> ShippingBin.getTradeManager().getTrades().size());
             if (liveNow == null || liveNow == savedTrades.size()) {
                 log(VERSION + " | Nothing changed since prices were last worked out; using the " + savedTrades.size()
@@ -313,6 +320,7 @@ final class ShippingValues {
 
         // ----- All items -----
         for (ResourceLocation key : BuiltInRegistries.ITEM.keySet()) allIds.add(key.toString());
+        allIds.sort(Comparator.naturalOrder());
         exists.addAll(allIds);
         for (String id : allIds) {
             if (s.excludeIds.contains(id) || s.excludeParts.stream().anyMatch(id::contains)) excluded.add(id);
@@ -473,6 +481,7 @@ final class ShippingValues {
         file.addProperty("fingerprint", fingerprint);
         file.add("trades", saved);
         PriceCache.write(file);
+        PriceSync.setPrices(server, saved);
 
         // Also compare with what the Shipping Bin actually loaded, so new items (from a newly added mod) get
         // sellable even if the saved file already looked up to date
@@ -529,13 +538,16 @@ final class ShippingValues {
 
     private void readRecipes(Collection<RecipeHolder<?>> holders) {
         List<RecipeHolder<?>> smithing = new ArrayList<>();
+        KegResults kegs = Objects.requireNonNullElse(attempt("keg pouring recipes", () -> KegResults.of(holders)), KegResults.NONE);
         for (RecipeHolder<?> h : holders) {
             Recipe<?> r = attempt("recipe", h::value);
             if (r == null) continue;
             if (r instanceof SmithingTransformRecipe) smithing.add(h);
             if (Boolean.TRUE.equals(attempt("isSpecial", r::isSpecial))) continue;
 
-            ItemStack result = attempt("result", () -> r.getResultItem(access));
+            // Brewin' and Chewin' keg recipes first: their own result lookup gives nothing in single player
+            ItemStack result = kegs.handles(r) ? attempt("keg result", () -> kegs.resultOf(r)) : null;
+            if (result == null || result.isEmpty()) result = attempt("result", () -> r.getResultItem(access));
             if (result == null) result = attempt("result (no registries)", () -> r.getResultItem(null));
             if (result == null || result.isEmpty()) continue;
 
@@ -818,10 +830,12 @@ final class ShippingValues {
                 for (int lvl = 1; lvl <= 5; lvl++) {
                     final int villagerLevel = lvl;
                     for (int n = 0; n < s.villagerSamples; n++) {
+                        final long seed = sampleSeed(pkey + "/" + lvl + "/" + n);
                         Villager v = attempt("villager setup", () -> {
                             Villager villager = EntityType.VILLAGER.create(level);
                             if (villager == null) return null;
                             villager.setVillagerData(villager.getVillagerData().setProfession(profession).setLevel(villagerLevel));
+                            villager.getRandom().setSeed(seed);
                             return villager;
                         });
                         if (v != null) readOffers(v, counts);
@@ -829,7 +843,12 @@ final class ShippingValues {
                 }
             }
             for (int n = 0; n < s.villagerSamples * 3; n++) {
-                WanderingTrader w = attempt("wandering trader setup", () -> EntityType.WANDERING_TRADER.create(level));
+                final long seed = sampleSeed("wandering_trader/" + n);
+                WanderingTrader w = attempt("wandering trader setup", () -> {
+                    WanderingTrader trader = EntityType.WANDERING_TRADER.create(level);
+                    if (trader != null) trader.getRandom().setSeed(seed);
+                    return trader;
+                });
                 if (w != null) readOffers(w, counts);
             }
             for (Map.Entry<String, Double> e : villagerUnit.entrySet()) {
@@ -848,6 +867,16 @@ final class ShippingValues {
             MintMachineEconomy.LOG.error(LOG + "Could not read villager prices: {}", e.toString());
         }
         return capped;
+    }
+
+    /**
+     * A fixed seed for one sample trader. The sample's trades are rolled from its own random source when first read,
+     * so seeding it makes the same mods give the same villager prices every time.
+     */
+    static long sampleSeed(String key) {
+        long h = 1125899906842597L;
+        for (int i = 0; i < key.length(); i++) h = 31 * h + key.charAt(i);
+        return h;
     }
 
     private void readOffers(AbstractVillager trader, int[] counts) {
@@ -975,7 +1004,10 @@ final class ShippingValues {
             record Group(String path, List<String> members) {}
             List<Group> groups = new ArrayList<>();
             Set<String> halfBlocks = new HashSet<>();
-            List<Pair<TagKey<Item>, HolderSet.Named<Item>>> tagList = BuiltInRegistries.ITEM.getTags().toList();
+            // In tag id order: a block in two groups (a leaves group and a hedge group, say) takes the price of the
+            // group read last, which must be the same one every time
+            List<Pair<TagKey<Item>, HolderSet.Named<Item>>> tagList = new ArrayList<>(BuiltInRegistries.ITEM.getTags().toList());
+            tagList.sort(Comparator.comparing(p -> p.getFirst().location().toString()));
             for (Pair<TagKey<Item>, HolderSet.Named<Item>> pair : tagList) {
                 ResourceLocation tagId = pair.getFirst().location();
                 String tns = tagId.getNamespace();
