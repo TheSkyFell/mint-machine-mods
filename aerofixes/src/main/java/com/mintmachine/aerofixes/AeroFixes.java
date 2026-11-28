@@ -8,6 +8,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.common.NeoForge;
 
 /**
  * Fixes for Create Aeronautics and Sable in the Create: Mint &amp; Machine modpack. Each part can be switched off in
@@ -21,7 +22,10 @@ import net.neoforged.fml.config.ModConfig;
  * <li><b>Chorus Staff trail</b> ({@link ChorusStaffTrail}): the staff's particle trail still ran to the far-off
  * position, one point per block, and froze the server. It's skipped when its ends are over 512 blocks apart.</li>
  * <li><b>Create Teleporters</b> ({@link CreateTeleportersCompat}): the Quantum Linker can be aimed at a block on a
- * ship, and the entity teleporter's range check counts world distance when either end is on a ship.</li>
+ * ship, the entity teleporter's range check counts world distance when either end is on a ship, and its teleport no
+ * longer leaves the player at the ship's stored position.</li>
+ * <li><b>Stranded players</b> ({@link StrandedPlayers}): a player saved inside the ships' storage area is moved to the
+ * world spawn as they join, instead of crashing the server.</li>
  * </ol>
  */
 @Mod(AeroFixes.MOD_ID)
@@ -31,5 +35,6 @@ public final class AeroFixes {
 
     public AeroFixes(IEventBus modBus, ModContainer container) {
         container.registerConfig(ModConfig.Type.COMMON, AeroFixesConfig.SPEC);
+        NeoForge.EVENT_BUS.addListener(StrandedPlayers::onLoggedIn);
     }
 }

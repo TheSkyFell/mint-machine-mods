@@ -11,7 +11,7 @@ displayURL="https://github.com/TheSkyFell/mint-machine-mods"
 authors="${mod_authors}"
 credits="Made for the Create: Mint & Machine modpack"
 description='''
-Fixes for Create Aeronautics and Sable. Teleport guard: teleports aimed at a block on a ship (Relics' Chorus Staff, for example) land on the ship instead of in the void, and a teleport to a ship that isn't loaded doesn't happen. The Chorus Staff's particle trail is skipped when it would run to a ship's far-off stored position, which froze the server. Create Teleporters' Quantum Linker can link to a block on a ship, and entity teleporters on or linked to ships are no longer out of range. Each fix can be switched off in config/mintmachine_aerofixes-common.toml.
+Fixes for Create Aeronautics and Sable. Teleport guard: teleports aimed at a block on a ship (Relics' Chorus Staff, for example) land on the ship instead of in the void, and a teleport to a ship that isn't loaded doesn't happen. The Chorus Staff's particle trail is skipped when it would run to a ship's far-off stored position, which froze the server. Create Teleporters' Quantum Linker can link to a block on a ship, entity teleporters on or linked to ships are no longer out of range, and their teleport no longer strands the player. A player saved inside the ships' storage area is moved to the world spawn when they join. Each fix can be switched off in config/mintmachine_aerofixes-common.toml.
 '''
 
 [[mixins]]

@@ -6,7 +6,8 @@
   "mixins": [
     "RelicsChorusStaffMixin",
     "CreateTeleportersLinkerMixin",
-    "CreateTeleportersRangeMixin"
+    "CreateTeleportersRangeMixin",
+    "CreateTeleportersEntityLocalMixin"
   ],
   "injectors": {
     "defaultRequire": 1

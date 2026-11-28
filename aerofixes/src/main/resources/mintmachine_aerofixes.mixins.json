@@ -4,7 +4,8 @@
   "package": "com.mintmachine.aerofixes.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ServerPlayerTeleportMixin"
+    "ServerPlayerTeleportMixin",
+    "ServerPlayerRescueMixin"
   ],
   "injectors": {
     "defaultRequire": 1

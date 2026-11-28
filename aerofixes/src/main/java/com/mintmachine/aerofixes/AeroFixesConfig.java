@@ -8,6 +8,7 @@ final class AeroFixesConfig {
 
     static final ModConfigSpec SPEC;
     static final ModConfigSpec.BooleanValue TELEPORT_GUARD;
+    static final ModConfigSpec.BooleanValue RESCUE_STRANDED;
     static final ModConfigSpec.BooleanValue CHORUS_STAFF_TRAIL;
     static final ModConfigSpec.BooleanValue CREATE_TELEPORTERS;
 
@@ -18,6 +19,10 @@ final class AeroFixesConfig {
                         "Teleports aimed at a block on a ship (Relics' Chorus Staff, for example) land on the ship instead of in the void,",
                         "and a teleport to a ship that isn't loaded doesn't happen at all")
                 .define("guard", true);
+        RESCUE_STRANDED = b.comment(
+                        "A player saved inside the ships' storage area (about 20 million blocks out) is moved to the world spawn when they join.",
+                        "Loading a player there makes the server generate terrain out there, which crashes it")
+                .define("rescueStranded", true);
         b.pop();
         b.push("relics");
         CHORUS_STAFF_TRAIL = b.comment(
@@ -40,6 +45,10 @@ final class AeroFixesConfig {
 
     static boolean teleportGuard() {
         return get(TELEPORT_GUARD);
+    }
+
+    static boolean rescueStranded() {
+        return get(RESCUE_STRANDED);
     }
 
     static boolean chorusStaffTrail() {

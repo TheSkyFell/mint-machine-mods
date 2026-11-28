@@ -25,6 +25,8 @@ import net.minecraft.world.phys.Vec3;
  * <li>The teleporter's range check (500 blocks by default) adds up the raw coordinate differences. A teleporter or a
  * target on a ship has plot-grid coordinates about 20 million blocks out, so any link between a ship and anywhere
  * else was "Out Of Range". {@link #shipAwareRange} hands the check a range that makes it compare world distances.</li>
+ * <li>Its teleport then left the player at the ship's stored position (an unpaired Sable push/pop), which crashed the
+ * server. {@link #entityLocal} skips that pair.</li>
  * </ol>
  * Used by the mixins in {@code com.mintmachine.aerofixes.mixin.compat}.
  */
@@ -68,6 +70,22 @@ public final class CreateTeleportersCompat {
         Vec3 b = Sable.HELPER.projectOutOfSubLevel(level, new Vec3(tx, ty, tz));
         double world = Math.abs(a.x - b.x) + Math.abs(a.y - b.y) + Math.abs(a.z - b.z);
         return Double.valueOf(r.doubleValue() + (raw - world));
+    }
+
+    /**
+     * Stands in for Create Teleporters' own pop/push of an entity into a ship's stored coordinates around its teleport.
+     * With the fix on it does nothing; switched off, it calls the original by reflection.
+     */
+    public static void entityLocal(String method, Object subLevel, Entity entity) {
+        if (AeroFixesConfig.createTeleporters()) return;
+        try {
+            var m = Class.forName("net.createteleporters.integration.SableAeronauticsIntegration")
+                    .getDeclaredMethod(method, Object.class, Entity.class);
+            m.setAccessible(true);
+            m.invoke(null, subLevel, entity);
+        } catch (ReflectiveOperationException e) {
+            AeroFixes.LOG.warn("[{}] Couldn't call Create Teleporters' {}", AeroFixes.MOD_ID, method, e);
+        }
     }
 
     private static boolean inPlotGrid(Level level, double x, double z) {
