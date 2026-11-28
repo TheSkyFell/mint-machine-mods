@@ -261,7 +261,9 @@ public final class EconomySettings {
                 + "worth the same; anything else gets fallback_tiers by rarity (common, uncommon, rare, epic, then two higher tiers), "
                 + "+unstackable_bonus tiers if it doesn't stack and can't be crafted, +boss_drop_bonus tiers if a boss drops it. "
                 + "Rechiseled/Chipped variants (chisel_mods) sell for the same as their block. Nothing pays more than villager_cap of what "
-                + "a villager charges. price_multipliers are hand-tuned boosts (villagers selling the item charge the same multiple more). "
+                + "a villager charges. Things that don't stack and are worth less than 1 spur minus rounding aren't bought, since one "
+                + "would pay a whole spur (they still count when pricing what's made from them). "
+                + "price_multipliers are hand-tuned boosts (villagers selling the item charge the same multiple more). "
                 + "Prices are worked out when a world loads and saved to config/mintmachine_economy/shipping_prices.json; they are worked "
                 + "out again when these settings, the mod list, the number of items or the recipe ids change, or with force_reprice.");
         put(s, "step_markup", 0.10, "step_labor", 0.02, "food_markup", 1.0, "food_labor", 0.25, "rounding", 0.05,
@@ -292,8 +294,35 @@ public final class EconomySettings {
                 "minecraft:debug_stick", "minecraft:knowledge_book", "minecraft:end_portal_frame",
                 "minecraft:reinforced_deepslate", "minecraft:petrified_oak_slab", "minecraft:structure_void",
                 "numismatics:spur", "numismatics:bevel", "numismatics:sprocket", "numismatics:cog",
-                "numismatics:crown", "numismatics:sun"));
-        s.add("exclude_parts", array("spawn_egg", "command_block", "structure_block", "jigsaw", "spawner", "creative"));
+                "numismatics:crown", "numismatics:sun",
+                // Free to make, so they'd be money from nothing: Create's packages (the cardboard ones are caught by
+                // exclude_parts), Table Cloth shopping lists and written schematics
+                "create:rare_creeper_package", "create:rare_darcy_package", "create:rare_evan_package",
+                "create:rare_jinx_package", "create:rare_kryppers_package", "create:rare_simi_package",
+                "create:rare_starlotte_package", "create:rare_thunder_package", "create:rare_up_package",
+                "create:rare_vector_package", "create_dragons_plus:rare_blaze_package",
+                "create_dragons_plus:rare_marble_gate_package", "deployer:rare_liukrast_package",
+                "deployer:rare_swzo_package", "dndesires:rare_creeper_package", "dndesires:rare_darcy_package",
+                "dndesires:rare_evan_package", "dndesires:rare_jinx_package", "dndesires:rare_kryppers_package",
+                "dndesires:rare_simi_package", "dndesires:rare_starlotte_package", "dndesires:rare_thunder_package",
+                "dndesires:rare_up_package", "dndesires:rare_vector_package", "mechanicals:rare_oierbravo_package",
+                "createframed:axolotl_lucy_package", "createframed:black_package", "createframed:blue_package",
+                "createframed:brown_package", "createframed:cyan_package", "createframed:fordalels_package",
+                "createframed:gray_package", "createframed:green_package", "createframed:karpboard_package",
+                "createframed:light_blue_package", "createframed:light_gray_package", "createframed:lime_package",
+                "createframed:magenta_package", "createframed:orange_package", "createframed:pink_package",
+                "createframed:purple_package", "createframed:red_package", "createframed:white_package",
+                "createframed:yellow_package", "create:shopping_list", "create:schematic",
+                "create_pattern_schematics:pattern_schematic", "powergrid:circuit_schematic",
+                // Experience: cheap to collect (ore crushing, mob farms, XP bottles), so it isn't sold
+                "create:experience_nugget", "create:experience_block", "create_enchantment_industry:experience_bucket",
+                "create_enchantment_industry:super_experience_nugget",
+                "create_enchantment_industry:super_experience_block", "create_enchantment_industry:experience_cake",
+                "create_enchantment_industry:experience_cake_slice"));
+        // incomplete_ and unfinished_: Create sequenced-assembly items between steps, worth a fallback price but one step
+        // from cheap inputs
+        s.add("exclude_parts", array("spawn_egg", "command_block", "structure_block", "jigsaw", "spawner", "creative",
+                "incomplete_", "unfinished_", "cardboard_package"));
         s.add("default_trades", array("amethyst", "apple", "baked_potato", "beef", "beetroot", "beetroot_soup", "bread",
                 "cake", "carrot", "chicken", "chorus_fruit", "cocoa_beans", "cod", "cookie", "copper_block", "copper_ingot",
                 "diamond", "diamond_block", "dried_kelp", "glow_berries", "gold_block", "gold_ingot", "golden_apple",
@@ -325,6 +354,10 @@ public final class EconomySettings {
 
     private static JsonObject defaultBase() {
         Object[] b = {
+                // Filled for free from a source block. First, so no recipe or tag below sets them higher
+                "minecraft:potion", 0.06, "minecraft:splash_potion", 0.1, "minecraft:lingering_potion", 0.15,
+                "minecraft:water_bucket", 3.85, "minecraft:powder_snow_bucket", 3.85, "minecraft:lava_bucket", 3.9,
+                "minecraft:milk_bucket", 3.9,
                 // Rare finds and boss drops
                 "minecraft:dragon_egg", 16384, "minecraft:elytra", 8192, "minecraft:nether_star", 4096,
                 "minecraft:dragon_head", 2048, "minecraft:enchanted_golden_apple", 2048, "minecraft:heavy_core", 1024,

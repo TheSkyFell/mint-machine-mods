@@ -66,6 +66,8 @@ import tfar.shippingbin.ShippingBin;
  * be crafted, and two tiers if a boss drops it.</li>
  * <li>Rechiseled and Chipped variants sell for the same as the block they're chiseled from.</li>
  * <li>Nothing pays more than half of what a villager charges for it.</li>
+ * <li>Things that don't stack and are worth less than 1 spur (minus the rounding margin) aren't bought: one of them would
+ * pay a whole spur. They keep their value for pricing what's made from them.</li>
  * </ol>
  * Worked out when a world has loaded, saved to config/mintmachine_economy/shipping_prices.json, and served to the
  * Shipping Bin by {@link ShippingPack}. Values are in spurs. {@link PriceSync} sends them to players.
@@ -77,7 +79,7 @@ import tfar.shippingbin.ShippingBin;
 final class ShippingValues {
     static final String LOG = "[shipping_values] ";
     /** Bump when the calculation changes, so saved prices are worked out again. */
-    private static final String VERSION = "java-2";
+    private static final String VERSION = "java-3";
     private static final List<String> RARITIES = List.of("COMMON", "UNCOMMON", "RARE", "EPIC");
 
     static void onServerStarted(ServerStartedEvent event) {
@@ -429,12 +431,28 @@ final class ShippingValues {
 
         int chiselCount = chiselVariants(trades);
 
+        // ----- Things that don't stack and are worth less than the smallest payout -----
+        // The Shipping Bin pays at least 1 spur, and an item that doesn't stack can't be sold in a batch, so one water
+        // bottle (worth 0.06) or one stone sword would pay a whole spur, many times its value. Such items keep their value,
+        // so whatever is made from them is still priced, but the bin doesn't buy them.
+        double minPayout = 1 - s.rounding;
+        List<String> unsold = new ArrayList<>();
+        trades.keySet().removeIf(id -> {
+            Double v = value.get(id);
+            boolean tooCheap = v != null && v < minPayout && maxStackOf(id) <= 1;
+            if (tooCheap) unsold.add(id);
+            return tooCheap;
+        });
+
         // ----- Report -----
         problems.forEach((k, n) -> MintMachineEconomy.LOG.warn(LOG + "Problem (" + n + "x) " + k));
         log("Bosses found (" + bossNames.size() + "): " + String.join(", ", bossNames));
         log(bossDrops.size() + " items are boss drops; " + fallback[1] + " fallback prices were moved up a tier or more");
         log(pairCount + " storage block pairs, " + chiselCount + " Rechiseled/Chipped variants matched to their block, "
                 + cookingCount + " cooking recipes using the cooking markup");
+        log(unsold.size() + " items that don't stack are worth under " + jsNum(minPayout)
+                + " spurs, so the Shipping Bin doesn't buy them (one would pay a whole spur)"
+                + (unsold.isEmpty() ? "" : ", for example " + String.join(", ", unsold.subList(0, Math.min(8, unsold.size())))));
         explain(trades);
 
         // ----- Save, and apply if anything changed -----
@@ -473,7 +491,8 @@ final class ShippingValues {
                 .collect(Collectors.joining(", ")));
         log(VERSION + " | Priced " + saved.size() + " items in " + (System.currentTimeMillis() - started) + " ms: "
                 + baseCount + " base materials, " + primaryCount + " from crafting, " + machineCount + " from machines, "
-                + fallback[0] + " from rarity, " + capped + " capped by villager prices, " + excluded.size() + " excluded");
+                + fallback[0] + " from rarity, " + capped + " capped by villager prices, " + excluded.size() + " excluded, "
+                + unsold.size() + " not bought (don't stack, under " + jsNum(minPayout) + ")");
 
         JsonObject file = new JsonObject();
         file.addProperty("hash", hash);
