@@ -20,6 +20,8 @@ import net.neoforged.fml.config.ModConfig;
  * moves the position onto the ship for all three, and stops the teleport when the ship isn't loaded.</li>
  * <li><b>Chorus Staff trail</b> ({@link ChorusStaffTrail}): the staff's particle trail still ran to the far-off
  * position, one point per block, and froze the server. It's skipped when its ends are over 512 blocks apart.</li>
+ * <li><b>Create Teleporters</b> ({@link CreateTeleportersCompat}): the Quantum Linker can be aimed at a block on a
+ * ship, and the entity teleporter's range check counts world distance when either end is on a ship.</li>
  * </ol>
  */
 @Mod(AeroFixes.MOD_ID)

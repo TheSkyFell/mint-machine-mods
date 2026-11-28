@@ -4,7 +4,9 @@
   "package": "com.mintmachine.aerofixes.mixin.compat",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "RelicsChorusStaffMixin"
+    "RelicsChorusStaffMixin",
+    "CreateTeleportersLinkerMixin",
+    "CreateTeleportersRangeMixin"
   ],
   "injectors": {
     "defaultRequire": 1
