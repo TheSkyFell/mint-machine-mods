@@ -14,6 +14,12 @@ import net.neoforged.neoforge.common.NeoForge;
  * Fixes for Create Aeronautics and Sable in the Create: Mint &amp; Machine modpack. Each part can be switched off in
  * config/mintmachine_aerofixes-common.toml.
  * <ol>
+ * <li><b>Drop guard</b> ({@link AssemblyDropGuard}): building or taking apart a ship no longer duplicates the contents
+ * of its blocks.</li>
+ * <li><b>Deferred collisions</b> ({@link DeferredCollisions}): ships smashing leaves, crops, melons, ice or TNT no
+ * longer freeze the server.</li>
+ * <li><b>Disassembly check</b> ({@link DisassemblyCheck}): a ship can't be taken apart into blocks that are in the
+ * way.</li>
  * <li><b>Teleport guard</b> ({@link TeleportGuard}): a ship's blocks are stored far out in the world, in Sable's
  * "plot grid". Anything that aims a player at a block on a ship, such as Relics' Chorus Staff, gets a position out
  * there. Sable moves such positions to where the ship really is for two of the three ways a player is teleported, but
@@ -36,5 +42,7 @@ public final class AeroFixes {
     public AeroFixes(IEventBus modBus, ModContainer container) {
         container.registerConfig(ModConfig.Type.COMMON, AeroFixesConfig.SPEC);
         NeoForge.EVENT_BUS.addListener(StrandedPlayers::onLoggedIn);
+        NeoForge.EVENT_BUS.addListener(AssemblyDropGuard::onServerTick);
+        NeoForge.EVENT_BUS.addListener(DeferredCollisions::onServerTick);
     }
 }

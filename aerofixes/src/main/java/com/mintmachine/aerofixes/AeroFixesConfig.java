@@ -11,9 +11,26 @@ final class AeroFixesConfig {
     static final ModConfigSpec.BooleanValue RESCUE_STRANDED;
     static final ModConfigSpec.BooleanValue CHORUS_STAFF_TRAIL;
     static final ModConfigSpec.BooleanValue CREATE_TELEPORTERS;
+    static final ModConfigSpec.BooleanValue DROP_GUARD;
+    static final ModConfigSpec.BooleanValue DEFERRED_COLLISIONS;
+    static final ModConfigSpec.BooleanValue DISASSEMBLY_CHECK;
 
     static {
         ModConfigSpec.Builder b = new ModConfigSpec.Builder();
+        b.push("ships");
+        DROP_GUARD = b.comment(
+                        "Building or taking apart a ship doesn't drop the contents of its blocks (Item Drains, Table Cloths, engines' fuel, ...)",
+                        "at their old places, which duplicated them")
+                .define("dropGuard", true);
+        DEFERRED_COLLISIONS = b.comment(
+                        "A ship that smashes leaves, crops, melons, ice or TNT breaks them after the physics step instead of during it,",
+                        "which froze the server")
+                .define("deferredCollisions", true);
+        DISASSEMBLY_CHECK = b.comment(
+                        "The Physics Assembler refuses to take a ship apart where blocks with a collision shape or a block entity",
+                        "(chests, machines, walls, End portals) are in the way, instead of overwriting them")
+                .define("disassemblyCheck", true);
+        b.pop();
         b.push("teleports");
         TELEPORT_GUARD = b.comment(
                         "Teleports aimed at a block on a ship (Relics' Chorus Staff, for example) land on the ship instead of in the void,",
@@ -41,6 +58,18 @@ final class AeroFixesConfig {
 
     static boolean createTeleporters() {
         return get(CREATE_TELEPORTERS);
+    }
+
+    static boolean dropGuard() {
+        return get(DROP_GUARD);
+    }
+
+    static boolean deferredCollisions() {
+        return get(DEFERRED_COLLISIONS);
+    }
+
+    static boolean disassemblyCheck() {
+        return get(DISASSEMBLY_CHECK);
     }
 
     static boolean teleportGuard() {

@@ -11,13 +11,17 @@ displayURL="https://github.com/TheSkyFell/mint-machine-mods"
 authors="${mod_authors}"
 credits="Made for the Create: Mint & Machine modpack"
 description='''
-Fixes for Create Aeronautics and Sable. Teleport guard: teleports aimed at a block on a ship (Relics' Chorus Staff, for example) land on the ship instead of in the void, and a teleport to a ship that isn't loaded doesn't happen. The Chorus Staff's particle trail is skipped when it would run to a ship's far-off stored position, which froze the server. Create Teleporters' Quantum Linker can link to a block on a ship, entity teleporters on or linked to ships are no longer out of range, and their teleport no longer strands the player. A player saved inside the ships' storage area is moved to the world spawn when they join. Each fix can be switched off in config/mintmachine_aerofixes-common.toml.
+Fixes for Create Aeronautics and Sable. Teleport guard: teleports aimed at a block on a ship (Relics' Chorus Staff, for example) land on the ship instead of in the void, and a teleport to a ship that isn't loaded doesn't happen. The Chorus Staff's particle trail is skipped when it would run to a ship's far-off stored position, which froze the server. Create Teleporters' Quantum Linker can link to a block on a ship, entity teleporters on or linked to ships are no longer out of range, and their teleport no longer strands the player. A player saved inside the ships' storage area is moved to the world spawn when they join. Building or taking apart a ship no longer duplicates items, ships no longer freeze the server when they smash leaves, crops or TNT, and a ship can't be taken apart into blocks that are in the way. Each fix can be switched off in config/mintmachine_aerofixes-common.toml.
 '''
 
 [[mixins]]
 config="mintmachine_aerofixes.mixins.json"
 
-# Fixes for other mods' code (Relics, Create Teleporters); not required, so a version that doesn't match only logs an error
+# Fixes inside Sable itself; not required, so a Sable change that doesn't match only logs an error
+[[mixins]]
+config="mintmachine_aerofixes.sable.mixins.json"
+
+# Fixes for other mods' code (Relics, Create Teleporters, Simulated); not required, so a version that doesn't match only logs an error
 [[mixins]]
 config="mintmachine_aerofixes.compat.mixins.json"
 

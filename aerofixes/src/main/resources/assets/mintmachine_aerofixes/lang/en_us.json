@@ -1,4 +1,5 @@
 {
   "message.mintmachine_aerofixes.teleport_blocked": "You can't teleport there: that ship isn't loaded.",
-  "message.mintmachine_aerofixes.stranded_rescued": "You were stuck in the ships' storage area, so you've been moved to the world spawn."
+  "message.mintmachine_aerofixes.stranded_rescued": "You were stuck in the ships' storage area, so you've been moved to the world spawn.",
+  "message.mintmachine_aerofixes.disassembly_blocked": "Can't take the ship apart here: %s at %s, %s, %s is in the way"
 }
