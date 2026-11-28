@@ -1,0 +1,404 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.2.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :accelerators
+Creating Minecraft artifacts without recompilation.
+
+> Configure project :aerofixes
+Creating Minecraft artifacts without recompilation.
+
+> Configure project :combat
+Creating Minecraft artifacts without recompilation.
+
+> Configure project :economy
+Creating Minecraft artifacts without recompilation.
+
+> Configure project :jetpack
+Creating Minecraft artifacts without recompilation.
+
+> Configure project :missionpaths
+Creating Minecraft artifacts without recompilation.
+
+> Configure project :opacbridge
+Creating Minecraft artifacts without recompilation.
+
+> Configure project :stubs
+Creating Minecraft artifacts without recompilation.
+
+> Task :accelerators:createMinecraftArtifacts
+Loaded 131 artifacts from /home/runner/work/mint-machine-mods/mint-machine-mods/accelerators/build/tmp/createMinecraftArtifacts/nfrt_artifact_manifest.properties
+[1m*** Started working on [4mdownloadJson[23;0m[23;0m
+ [1m[92m✓[23;0m Completed [4mdownloadJson[23;0m in 0.02s
+[1m*** Started working on [4mdownloadServer[23;0m[23;0m
+[1m*** Started working on [4mdownloadClient[23;0m[23;0m
+[1m*** Started working on [4mdownloadClientMappings[23;0m[23;0m
+ [1m[92m✓[23;0m Completed [4mdownloadClient[23;0m in 0.04s
+ [1m[92m✓[23;0m Completed [4mdownloadServer[23;0m in 0.04s
+ [1m[92m✓[23;0m Completed [4mdownloadClientMappings[23;0m in 0.04s
+[1m*** Started working on [4mmergeMappings[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mmergeMappings[23;0m in 0.00s
+[1m*** Started working on [4mstripClient[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mstripClient[23;0m in 0.00s
+[1m*** Started working on [4mextractServer[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mextractServer[23;0m in 0.00s
+[1m*** Started working on [4mstripServer[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mstripServer[23;0m in 0.00s
+[1m*** Started working on [4mmerge[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mmerge[23;0m in 0.00s
+[1m*** Started working on [4mrename[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mrename[23;0m in 0.00s
+[1m*** Started working on [4mbinaryPatch[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mbinaryPatch[23;0m in 0.00s
+[1m*** Started working on [4mcopyUnpatchedClasses[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mcopyUnpatchedClasses[23;0m in 0.00s
+[1m*** Started working on [4mapplyDevTransforms[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mapplyDevTransforms[23;0m in 0.00s
+[1m*** Started working on [4mbinaryWithNeoForge[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mbinaryWithNeoForge[23;0m in 0.00s
+Total runtime: 1.08s
+
+
+> Task :stubs:createMinecraftArtifacts
+Loaded 131 artifacts from /home/runner/work/mint-machine-mods/mint-machine-mods/stubs/build/tmp/createMinecraftArtifacts/nfrt_artifact_manifest.properties
+[1m*** Started working on [4mdownloadJson[23;0m[23;0m
+ [1m[92m✓[23;0m Completed [4mdownloadJson[23;0m in 0.02s
+[1m*** Started working on [4mdownloadClient[23;0m[23;0m
+[1m*** Started working on [4mdownloadServer[23;0m[23;0m
+[1m*** Started working on [4mdownloadClientMappings[23;0m[23;0m
+ [1m[92m✓[23;0m Completed [4mdownloadClientMappings[23;0m in 0.04s
+ [1m[92m✓[23;0m Completed [4mdownloadClient[23;0m in 0.04s
+ [1m[92m✓[23;0m Completed [4mdownloadServer[23;0m in 0.04s
+[1m*** Started working on [4mstripClient[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mstripClient[23;0m in 0.00s
+[1m*** Started working on [4mextractServer[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mextractServer[23;0m in 0.00s
+[1m*** Started working on [4mmergeMappings[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mmergeMappings[23;0m in 0.00s
+[1m*** Started working on [4mstripServer[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mstripServer[23;0m in 0.00s
+[1m*** Started working on [4mmerge[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mmerge[23;0m in 0.00s
+[1m*** Started working on [4mrename[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mrename[23;0m in 0.00s
+[1m*** Started working on [4mbinaryPatch[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mbinaryPatch[23;0m in 0.00s
+[1m*** Started working on [4mcopyUnpatchedClasses[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mcopyUnpatchedClasses[23;0m in 0.00s
+[1m*** Started working on [4mapplyDevTransforms[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mapplyDevTransforms[23;0m in 0.00s
+[1m*** Started working on [4mbinaryWithNeoForge[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mbinaryWithNeoForge[23;0m in 0.00s
+Total runtime: 1.00s
+
+
+> Task :stubs:compileJava
+> Task :accelerators:compileJava
+> Task :accelerators:generateModMetadata
+> Task :accelerators:processResources
+> Task :accelerators:classes
+> Task :accelerators:jarJar NO-SOURCE
+> Task :accelerators:jar
+> Task :accelerators:assemble
+> Task :accelerators:compileTestJava NO-SOURCE
+> Task :accelerators:processTestResources NO-SOURCE
+> Task :accelerators:testClasses UP-TO-DATE
+> Task :accelerators:test NO-SOURCE
+> Task :accelerators:check UP-TO-DATE
+> Task :accelerators:build
+
+> Task :aerofixes:createMinecraftArtifacts
+Loaded 131 artifacts from /home/runner/work/mint-machine-mods/mint-machine-mods/aerofixes/build/tmp/createMinecraftArtifacts/nfrt_artifact_manifest.properties
+[1m*** Started working on [4mdownloadJson[23;0m[23;0m
+ [1m[92m✓[23;0m Completed [4mdownloadJson[23;0m in 0.02s
+[1m*** Started working on [4mdownloadServer[23;0m[23;0m
+[1m*** Started working on [4mdownloadClient[23;0m[23;0m
+[1m*** Started working on [4mdownloadClientMappings[23;0m[23;0m
+ [1m[92m✓[23;0m Completed [4mdownloadClientMappings[23;0m in 0.04s
+ [1m[92m✓[23;0m Completed [4mdownloadClient[23;0m in 0.04s
+ [1m[92m✓[23;0m Completed [4mdownloadServer[23;0m in 0.04s
+[1m*** Started working on [4mmergeMappings[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mmergeMappings[23;0m in 0.00s
+[1m*** Started working on [4mstripClient[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mstripClient[23;0m in 0.00s
+[1m*** Started working on [4mextractServer[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mextractServer[23;0m in 0.00s
+[1m*** Started working on [4mstripServer[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mstripServer[23;0m in 0.00s
+[1m*** Started working on [4mmerge[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mmerge[23;0m in 0.00s
+[1m*** Started working on [4mrename[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mrename[23;0m in 0.00s
+[1m*** Started working on [4mbinaryPatch[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mbinaryPatch[23;0m in 0.00s
+[1m*** Started working on [4mcopyUnpatchedClasses[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mcopyUnpatchedClasses[23;0m in 0.00s
+[1m*** Started working on [4mapplyDevTransforms[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mapplyDevTransforms[23;0m in 0.00s
+[1m*** Started working on [4mbinaryWithNeoForge[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mbinaryWithNeoForge[23;0m in 0.00s
+Total runtime: 1.02s
+
+
+> Task :aerofixes:compileJava
+> Task :aerofixes:generateModMetadata
+> Task :aerofixes:processResources
+> Task :aerofixes:classes
+> Task :aerofixes:jarJar NO-SOURCE
+> Task :aerofixes:jar
+> Task :aerofixes:assemble
+> Task :aerofixes:compileTestJava NO-SOURCE
+> Task :aerofixes:processTestResources NO-SOURCE
+> Task :aerofixes:testClasses UP-TO-DATE
+> Task :aerofixes:test NO-SOURCE
+> Task :aerofixes:check UP-TO-DATE
+> Task :aerofixes:build
+
+> Task :combat:createMinecraftArtifacts
+Loaded 131 artifacts from /home/runner/work/mint-machine-mods/mint-machine-mods/combat/build/tmp/createMinecraftArtifacts/nfrt_artifact_manifest.properties
+[1m*** Started working on [4mdownloadJson[23;0m[23;0m
+ [1m[92m✓[23;0m Completed [4mdownloadJson[23;0m in 0.02s
+[1m*** Started working on [4mdownloadServer[23;0m[23;0m
+[1m*** Started working on [4mdownloadClientMappings[23;0m[23;0m
+[1m*** Started working on [4mdownloadClient[23;0m[23;0m
+ [1m[92m✓[23;0m Completed [4mdownloadClientMappings[23;0m in 0.03s
+ [1m[92m✓[23;0m Completed [4mdownloadServer[23;0m in 0.04s
+ [1m[92m✓[23;0m Completed [4mdownloadClient[23;0m in 0.04s
+[1m*** Started working on [4mmergeMappings[23;0m[23;0m
+[1m*** Started working on [4mstripClient[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mmergeMappings[23;0m in 0.00s
+ [1m[92m♻[23;0m Used cache of [4mstripClient[23;0m in 0.00s
+[1m*** Started working on [4mextractServer[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mextractServer[23;0m in 0.00s
+[1m*** Started working on [4mstripServer[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mstripServer[23;0m in 0.00s
+[1m*** Started working on [4mmerge[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mmerge[23;0m in 0.00s
+[1m*** Started working on [4mrename[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mrename[23;0m in 0.00s
+[1m*** Started working on [4mbinaryPatch[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mbinaryPatch[23;0m in 0.00s
+[1m*** Started working on [4mcopyUnpatchedClasses[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mcopyUnpatchedClasses[23;0m in 0.00s
+[1m*** Started working on [4mapplyDevTransforms[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mapplyDevTransforms[23;0m in 0.00s
+[1m*** Started working on [4mbinaryWithNeoForge[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mbinaryWithNeoForge[23;0m in 0.00s
+Total runtime: 1.01s
+
+
+> Task :combat:compileJava
+> Task :combat:generateModMetadata
+> Task :combat:processResources
+> Task :combat:classes
+> Task :combat:jarJar NO-SOURCE
+> Task :combat:jar
+> Task :combat:assemble
+> Task :combat:compileTestJava NO-SOURCE
+> Task :combat:processTestResources NO-SOURCE
+> Task :combat:testClasses UP-TO-DATE
+> Task :combat:test NO-SOURCE
+> Task :combat:check UP-TO-DATE
+> Task :combat:build
+
+> Task :economy:createMinecraftArtifacts
+Loaded 131 artifacts from /home/runner/work/mint-machine-mods/mint-machine-mods/economy/build/tmp/createMinecraftArtifacts/nfrt_artifact_manifest.properties
+[1m*** Started working on [4mdownloadJson[23;0m[23;0m
+ [1m[92m✓[23;0m Completed [4mdownloadJson[23;0m in 0.02s
+[1m*** Started working on [4mdownloadServer[23;0m[23;0m
+[1m*** Started working on [4mdownloadClientMappings[23;0m[23;0m
+[1m*** Started working on [4mdownloadClient[23;0m[23;0m
+ [1m[92m✓[23;0m Completed [4mdownloadServer[23;0m in 0.04s
+ [1m[92m✓[23;0m Completed [4mdownloadClient[23;0m in 0.04s
+ [1m[92m✓[23;0m Completed [4mdownloadClientMappings[23;0m in 0.04s
+[1m*** Started working on [4mmergeMappings[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mmergeMappings[23;0m in 0.00s
+[1m*** Started working on [4mstripClient[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mstripClient[23;0m in 0.00s
+[1m*** Started working on [4mextractServer[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mextractServer[23;0m in 0.00s
+[1m*** Started working on [4mstripServer[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mstripServer[23;0m in 0.00s
+[1m*** Started working on [4mmerge[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mmerge[23;0m in 0.00s
+[1m*** Started working on [4mrename[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mrename[23;0m in 0.00s
+[1m*** Started working on [4mbinaryPatch[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mbinaryPatch[23;0m in 0.00s
+[1m*** Started working on [4mcopyUnpatchedClasses[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mcopyUnpatchedClasses[23;0m in 0.00s
+[1m*** Started working on [4mapplyDevTransforms[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mapplyDevTransforms[23;0m in 0.00s
+[1m*** Started working on [4mbinaryWithNeoForge[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mbinaryWithNeoForge[23;0m in 0.00s
+Total runtime: 1.01s
+
+
+> Task :economy:compileJava
+> Task :economy:generateModMetadata
+> Task :economy:processResources
+> Task :economy:classes
+> Task :economy:jarJar NO-SOURCE
+> Task :economy:jar
+> Task :economy:assemble
+> Task :economy:compileTestJava NO-SOURCE
+> Task :economy:processTestResources NO-SOURCE
+> Task :economy:testClasses UP-TO-DATE
+> Task :economy:test NO-SOURCE
+> Task :economy:check UP-TO-DATE
+> Task :economy:build
+
+> Task :jetpack:createMinecraftArtifacts
+Loaded 131 artifacts from /home/runner/work/mint-machine-mods/mint-machine-mods/jetpack/build/tmp/createMinecraftArtifacts/nfrt_artifact_manifest.properties
+[1m*** Started working on [4mdownloadJson[23;0m[23;0m
+ [1m[92m✓[23;0m Completed [4mdownloadJson[23;0m in 0.02s
+[1m*** Started working on [4mdownloadServer[23;0m[23;0m
+[1m*** Started working on [4mdownloadClient[23;0m[23;0m
+[1m*** Started working on [4mdownloadClientMappings[23;0m[23;0m
+ [1m[92m✓[23;0m Completed [4mdownloadClientMappings[23;0m in 0.04s
+ [1m[92m✓[23;0m Completed [4mdownloadClient[23;0m in 0.04s
+ [1m[92m✓[23;0m Completed [4mdownloadServer[23;0m in 0.04s
+[1m*** Started working on [4mmergeMappings[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mmergeMappings[23;0m in 0.00s
+[1m*** Started working on [4mstripClient[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mstripClient[23;0m in 0.00s
+[1m*** Started working on [4mextractServer[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mextractServer[23;0m in 0.00s
+[1m*** Started working on [4mstripServer[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mstripServer[23;0m in 0.00s
+[1m*** Started working on [4mmerge[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mmerge[23;0m in 0.00s
+[1m*** Started working on [4mrename[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mrename[23;0m in 0.00s
+[1m*** Started working on [4mbinaryPatch[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mbinaryPatch[23;0m in 0.00s
+[1m*** Started working on [4mcopyUnpatchedClasses[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mcopyUnpatchedClasses[23;0m in 0.00s
+[1m*** Started working on [4mapplyDevTransforms[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mapplyDevTransforms[23;0m in 0.00s
+[1m*** Started working on [4mbinaryWithNeoForge[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mbinaryWithNeoForge[23;0m in 0.00s
+Total runtime: 1.04s
+
+
+> Task :jetpack:compileJava
+> Task :jetpack:generateModMetadata
+> Task :jetpack:processResources
+> Task :jetpack:classes
+> Task :jetpack:jarJar NO-SOURCE
+> Task :jetpack:jar
+> Task :jetpack:assemble
+> Task :jetpack:compileTestJava NO-SOURCE
+> Task :jetpack:processTestResources NO-SOURCE
+> Task :jetpack:testClasses UP-TO-DATE
+> Task :jetpack:test NO-SOURCE
+> Task :jetpack:check UP-TO-DATE
+> Task :jetpack:build
+
+> Task :missionpaths:createMinecraftArtifacts
+Loaded 131 artifacts from /home/runner/work/mint-machine-mods/mint-machine-mods/missionpaths/build/tmp/createMinecraftArtifacts/nfrt_artifact_manifest.properties
+[1m*** Started working on [4mdownloadJson[23;0m[23;0m
+ [1m[92m✓[23;0m Completed [4mdownloadJson[23;0m in 0.02s
+[1m*** Started working on [4mdownloadServer[23;0m[23;0m
+[1m*** Started working on [4mdownloadClientMappings[23;0m[23;0m
+[1m*** Started working on [4mdownloadClient[23;0m[23;0m
+ [1m[92m✓[23;0m Completed [4mdownloadClientMappings[23;0m in 0.04s
+ [1m[92m✓[23;0m Completed [4mdownloadServer[23;0m in 0.04s
+ [1m[92m✓[23;0m Completed [4mdownloadClient[23;0m in 0.04s
+[1m*** Started working on [4mstripClient[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mstripClient[23;0m in 0.00s
+[1m*** Started working on [4mmergeMappings[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mmergeMappings[23;0m in 0.00s
+[1m*** Started working on [4mextractServer[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mextractServer[23;0m in 0.00s
+[1m*** Started working on [4mstripServer[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mstripServer[23;0m in 0.00s
+[1m*** Started working on [4mmerge[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mmerge[23;0m in 0.00s
+[1m*** Started working on [4mrename[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mrename[23;0m in 0.00s
+[1m*** Started working on [4mbinaryPatch[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mbinaryPatch[23;0m in 0.00s
+[1m*** Started working on [4mcopyUnpatchedClasses[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mcopyUnpatchedClasses[23;0m in 0.00s
+[1m*** Started working on [4mapplyDevTransforms[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mapplyDevTransforms[23;0m in 0.00s
+[1m*** Started working on [4mbinaryWithNeoForge[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mbinaryWithNeoForge[23;0m in 0.00s
+Total runtime: 1.04s
+
+
+> Task :missionpaths:compileJava
+> Task :missionpaths:generateModMetadata
+> Task :missionpaths:processResources
+> Task :missionpaths:classes
+> Task :missionpaths:jarJar NO-SOURCE
+> Task :missionpaths:jar
+> Task :missionpaths:assemble
+> Task :missionpaths:compileTestJava FROM-CACHE
+> Task :missionpaths:processTestResources NO-SOURCE
+> Task :missionpaths:testClasses UP-TO-DATE
+> Task :missionpaths:test FROM-CACHE
+> Task :missionpaths:check UP-TO-DATE
+> Task :missionpaths:build
+
+> Task :opacbridge:createMinecraftArtifacts
+Loaded 131 artifacts from /home/runner/work/mint-machine-mods/mint-machine-mods/opacbridge/build/tmp/createMinecraftArtifacts/nfrt_artifact_manifest.properties
+[1m*** Started working on [4mdownloadJson[23;0m[23;0m
+ [1m[92m✓[23;0m Completed [4mdownloadJson[23;0m in 0.02s
+[1m*** Started working on [4mdownloadClientMappings[23;0m[23;0m
+[1m*** Started working on [4mdownloadServer[23;0m[23;0m
+[1m*** Started working on [4mdownloadClient[23;0m[23;0m
+ [1m[92m✓[23;0m Completed [4mdownloadClient[23;0m in 0.04s
+ [1m[92m✓[23;0m Completed [4mdownloadServer[23;0m in 0.04s
+ [1m[92m✓[23;0m Completed [4mdownloadClientMappings[23;0m in 0.04s
+[1m*** Started working on [4mextractServer[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mextractServer[23;0m in 0.00s
+[1m*** Started working on [4mstripClient[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mstripClient[23;0m in 0.00s
+[1m*** Started working on [4mmergeMappings[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mmergeMappings[23;0m in 0.01s
+[1m*** Started working on [4mstripServer[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mstripServer[23;0m in 0.00s
+[1m*** Started working on [4mmerge[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mmerge[23;0m in 0.00s
+[1m*** Started working on [4mrename[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mrename[23;0m in 0.00s
+[1m*** Started working on [4mbinaryPatch[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mbinaryPatch[23;0m in 0.00s
+[1m*** Started working on [4mcopyUnpatchedClasses[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mcopyUnpatchedClasses[23;0m in 0.00s
+[1m*** Started working on [4mapplyDevTransforms[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mapplyDevTransforms[23;0m in 0.00s
+[1m*** Started working on [4mbinaryWithNeoForge[23;0m[23;0m
+ [1m[92m♻[23;0m Used cache of [4mbinaryWithNeoForge[23;0m in 0.00s
+Total runtime: 1.00s
+
+
+> Task :opacbridge:compileJava
+> Task :opacbridge:generateModMetadata
+> Task :opacbridge:processResources
+> Task :opacbridge:classes
+> Task :opacbridge:jarJar NO-SOURCE
+> Task :opacbridge:jar
+> Task :opacbridge:assemble
+> Task :opacbridge:compileTestJava FROM-CACHE
+> Task :opacbridge:processTestResources NO-SOURCE
+> Task :opacbridge:testClasses UP-TO-DATE
+> Task :opacbridge:test FROM-CACHE
+> Task :opacbridge:check UP-TO-DATE
+> Task :opacbridge:build
+> Task :stubs:processResources NO-SOURCE
+> Task :stubs:classes
+> Task :stubs:jarJar NO-SOURCE
+> Task :stubs:jar
+> Task :stubs:assemble
+> Task :stubs:compileTestJava NO-SOURCE
+> Task :stubs:processTestResources NO-SOURCE
+> Task :stubs:testClasses UP-TO-DATE
+> Task :stubs:test NO-SOURCE
+> Task :stubs:check UP-TO-DATE
+> Task :stubs:build
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1795892761636.json
+
+BUILD SUCCESSFUL in 28s
+42 actionable tasks: 38 executed, 4 from cache
