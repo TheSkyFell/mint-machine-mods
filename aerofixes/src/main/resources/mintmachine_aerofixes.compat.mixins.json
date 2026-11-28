@@ -1,0 +1,12 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "com.mintmachine.aerofixes.mixin.compat",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "RelicsChorusStaffMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

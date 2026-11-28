@@ -18,6 +18,8 @@ import net.neoforged.fml.config.ModConfig;
  * there. Sable moves such positions to where the ship really is for two of the three ways a player is teleported, but
  * not for {@code teleportTo(level, x, y, z, yaw, pitch)}, so the player ended up in the void (Sable #1667). The guard
  * moves the position onto the ship for all three, and stops the teleport when the ship isn't loaded.</li>
+ * <li><b>Chorus Staff trail</b> ({@link ChorusStaffTrail}): the staff's particle trail still ran to the far-off
+ * position, one point per block, and froze the server. It's skipped when its ends are over 512 blocks apart.</li>
  * </ol>
  */
 @Mod(AeroFixes.MOD_ID)

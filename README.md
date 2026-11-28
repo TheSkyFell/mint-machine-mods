@@ -38,6 +38,7 @@ Companion mods for the **Create: Mint & Machine** modpack (NeoForge 1.21.1). The
   - Needs Missions 0.5.2 (it patches that version's `DataStorage`).
 - **Aeronautics Fixes** (in progress; more fixes to come):
   - **Teleport guard:** a ship's blocks are stored far out in the world, in Sable's "plot grid", so anything that aims a player at a block on a ship (Relics' Chorus Staff, for example) gets a position out there. Sable 2.0.6 moves such positions onto the ship for two of the three ways a player is teleported, but not for `teleportTo(level, x, y, z, yaw, pitch)`, so the player landed in the void (Sable #1667). This moves the position onto the ship for all three, and stops the teleport, with a message, when the ship isn't loaded.
+  - **Chorus Staff trail:** Relics' Chorus Staff draws a particle trail one point per block to where it was aimed. Aimed at a ship, that was about 20 million points, and the server froze. The trail is skipped when its ends are over 512 blocks apart (patches Relics 0.12.11; if a Relics update renames that code, the game logs a mixin error and carries on without this fix).
   - Needs Sable 2.0.x (2.0.6 or later).
 
 ## Building

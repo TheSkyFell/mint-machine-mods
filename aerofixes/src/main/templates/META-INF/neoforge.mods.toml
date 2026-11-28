@@ -11,11 +11,15 @@ displayURL="https://github.com/TheSkyFell/mint-machine-mods"
 authors="${mod_authors}"
 credits="Made for the Create: Mint & Machine modpack"
 description='''
-Fixes for Create Aeronautics and Sable. Teleport guard: teleports aimed at a block on a ship (Relics' Chorus Staff, for example) land on the ship instead of in the void, and a teleport to a ship that isn't loaded doesn't happen. Each fix can be switched off in config/mintmachine_aerofixes-common.toml.
+Fixes for Create Aeronautics and Sable. Teleport guard: teleports aimed at a block on a ship (Relics' Chorus Staff, for example) land on the ship instead of in the void, and a teleport to a ship that isn't loaded doesn't happen. The Chorus Staff's particle trail is skipped when it would run to a ship's far-off stored position, which froze the server. Each fix can be switched off in config/mintmachine_aerofixes-common.toml.
 '''
 
 [[mixins]]
 config="mintmachine_aerofixes.mixins.json"
+
+# Fixes for other mods' code (Relics); not required, so a version that doesn't match only logs an error
+[[mixins]]
+config="mintmachine_aerofixes.compat.mixins.json"
 
 [[dependencies.${mod_id}]]
     modId="neoforge"

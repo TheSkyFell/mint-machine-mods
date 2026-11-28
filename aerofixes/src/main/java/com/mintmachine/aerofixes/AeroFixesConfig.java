@@ -8,6 +8,7 @@ final class AeroFixesConfig {
 
     static final ModConfigSpec SPEC;
     static final ModConfigSpec.BooleanValue TELEPORT_GUARD;
+    static final ModConfigSpec.BooleanValue CHORUS_STAFF_TRAIL;
 
     static {
         ModConfigSpec.Builder b = new ModConfigSpec.Builder();
@@ -17,12 +18,26 @@ final class AeroFixesConfig {
                         "and a teleport to a ship that isn't loaded doesn't happen at all")
                 .define("guard", true);
         b.pop();
+        b.push("relics");
+        CHORUS_STAFF_TRAIL = b.comment(
+                        "Skip the Chorus Staff's particle trail when its ends are more than 512 blocks apart. Aimed at a ship, the trail",
+                        "ran to the ship's stored position about 20 million blocks away and froze the server")
+                .define("chorusStaffTrail", true);
+        b.pop();
         SPEC = b.build();
     }
 
     static boolean teleportGuard() {
+        return get(TELEPORT_GUARD);
+    }
+
+    static boolean chorusStaffTrail() {
+        return get(CHORUS_STAFF_TRAIL);
+    }
+
+    private static boolean get(ModConfigSpec.BooleanValue value) {
         try {
-            return TELEPORT_GUARD.get();
+            return value.get();
         } catch (IllegalStateException notLoadedYet) {
             return true;
         }
