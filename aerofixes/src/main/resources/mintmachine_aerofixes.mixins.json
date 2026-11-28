@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.mintmachine.aerofixes.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ServerPlayerTeleportMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

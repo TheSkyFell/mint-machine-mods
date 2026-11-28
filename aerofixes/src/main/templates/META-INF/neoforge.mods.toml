@@ -1,0 +1,41 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL="https://github.com/TheSkyFell/mint-machine-mods/issues"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+displayURL="https://github.com/TheSkyFell/mint-machine-mods"
+authors="${mod_authors}"
+credits="Made for the Create: Mint & Machine modpack"
+description='''
+Fixes for Create Aeronautics and Sable. Teleport guard: teleports aimed at a block on a ship (Relics' Chorus Staff, for example) land on the ship instead of in the void, and a teleport to a ship that isn't loaded doesn't happen. Each fix can be switched off in config/mintmachine_aerofixes-common.toml.
+'''
+
+[[mixins]]
+config="mintmachine_aerofixes.mixins.json"
+
+[[dependencies.${mod_id}]]
+    modId="neoforge"
+    type="required"
+    versionRange="${neo_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    type="required"
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+# Written against Sable 2.0.6. The range stops at 2.1, so a bigger Sable change says plainly that this mod needs
+# updating instead of failing at a teleport.
+[[dependencies.${mod_id}]]
+    modId="sable"
+    type="required"
+    versionRange="[2.0.6,2.1)"
+    ordering="AFTER"
+    side="BOTH"

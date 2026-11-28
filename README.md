@@ -1,6 +1,6 @@
 # Mint & Machine companion mods
 
-Companion mods for the **Create: Mint & Machine** modpack (NeoForge 1.21.1). The first four started as KubeJS scripts in the pack; the last two patch other mods with Mixin.
+Companion mods for the **Create: Mint & Machine** modpack (NeoForge 1.21.1). The first four started as KubeJS scripts in the pack; the last three patch other mods, or Minecraft, with Mixin.
 
 | Folder | Mod | Mod ID | Settings |
 |---|---|---|---|
@@ -10,6 +10,7 @@ Companion mods for the **Create: Mint & Machine** modpack (NeoForge 1.21.1). The
 | `jetpack` | Create: Stuff 'N Additions Jetpack Curio Compat | `sa_jetpack_curio_compat` | none |
 | `opacbridge` | Automated Logistics: OPAC Parties | `aal_opac_bridge` | none |
 | `missionpaths` | Missions Paths | `missions_paths` | `config/missions/paths.json`, plus a `"path"` on each sub-mission in `config/missions/missions.json` |
+| `aerofixes` | Create: Mint & Machine - Aeronautics Fixes | `mintmachine_aerofixes` | `config/mintmachine_aerofixes-common.toml` |
 
 - **Economy:**
   - Villagers and wandering traders trade in Create: Numismatics coins.
@@ -35,6 +36,9 @@ Companion mods for the **Create: Mint & Machine** modpack (NeoForge 1.21.1). The
   - Splits the Missions mod's 10 weekly missions between paths, 2 each of Create, Travel, Magic, Farming and Fishing by default, and keeps rerolls in a mission's own path.
   - A path with nothing left is filled from the others, so there are always 10. If anything goes wrong, or it's switched off in `paths.json`, the Missions mod picks as usual.
   - Needs Missions 0.5.2 (it patches that version's `DataStorage`).
+- **Aeronautics Fixes** (in progress; more fixes to come):
+  - **Teleport guard:** a ship's blocks are stored far out in the world, in Sable's "plot grid", so anything that aims a player at a block on a ship (Relics' Chorus Staff, for example) gets a position out there. Sable 2.0.6 moves such positions onto the ship for two of the three ways a player is teleported, but not for `teleportTo(level, x, y, z, yaw, pitch)`, so the player landed in the void (Sable #1667). This moves the position onto the ship for all three, and stops the teleport, with a message, when the ship isn't loaded.
+  - Needs Sable 2.0.x (2.0.6 or later).
 
 ## Building
 
@@ -44,6 +48,6 @@ Companion mods for the **Create: Mint & Machine** modpack (NeoForge 1.21.1). The
 
 The jars land in each mod's `build/libs/`. GitHub Actions builds every push. The latest jars and build log are pushed to the `ci-output` branch, and are also attached to each run as an artifact.
 
-All six mods are MIT-licensed (`LICENSE`). Their plain-Java rules have unit tests (`./gradlew test`, also run by `build`). Checks that need the real mods (applying the mixins with the real Mixin transformer, and running against the pack's `missions.json`) were run against the modpack's jars outside this build.
+All seven mods are MIT-licensed (`LICENSE`). Their plain-Java rules have unit tests (`./gradlew test`, also run by `build`). Checks that need the real mods (applying the mixins with the real Mixin transformer, and running against the pack's `missions.json`) were run against the modpack's jars outside this build.
 
 The other mods' classes come from `stubs/`. These are compile-only stand-ins whose signatures are copied from the exact versions in the modpack, and they are never packaged. CI fails if a stub class ends up in a jar. If a mod these depend on changes its API, update the matching stub.
